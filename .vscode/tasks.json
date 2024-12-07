@@ -1,0 +1,52 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install NPM dependencies",
+			"type": "shell",
+			"command": "npm install",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Build TypeScript",
+			"type": "shell",
+			"command": "npm run debug",
+			"group": "build",
+			"dependsOn": "Install NPM dependencies",
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Python dependencies",
+			"type": "shell",
+			"command": "pip install -r requirements.txt",
+			"dependsOn": "Build TypeScript",
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Run PyLint on 'src' folder",
+			"type": "shell",
+			"command": "pylint src",
+			"group": "build",
+			"dependsOn": "Install Python dependencies",
+			"problemMatcher": []
+		},
+		{
+			"label": "Run PyLint on 'tests' folder",
+			"type": "shell",
+			"command": "pylint tests",
+			"group": "build",
+			"dependsOn": "Run PyLint on 'src' folder",
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Python Unit Tests",
+			"type": "shell",
+			"command": "python -m unittest discover -s tests",
+			"group": "test",
+			"dependsOn": "Run PyLint on 'tests' folder",
+			"problemMatcher": []
+		}
+	]
+}
