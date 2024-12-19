@@ -1,0 +1,14 @@
+body {
+	font-family: Arial, sans-serif;
+	/*display: flex;*/
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	margin: 0;
+	background-color: #f0f8ff;
+}
+
+h1 {
+	color: #333;
+	font-size: 3em;
+}
