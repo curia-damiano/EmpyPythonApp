@@ -1,5 +1,7 @@
 import unittest
-from src.app import app
+
+from src.app import App
+
 
 class FlaskAppTests(unittest.TestCase):
 	"""
@@ -16,8 +18,10 @@ class FlaskAppTests(unittest.TestCase):
 
 	def setUp(self):
 		# Set up the test client
-		self.app = app.test_client()
+		flask_app = App().flask_app
+		self.app = flask_app.test_client()
 		self.app.testing = True
+		self.logger = flask_app.logger
 
 
 	def test_index(self):
@@ -29,8 +33,8 @@ class FlaskAppTests(unittest.TestCase):
 
 	def test_logging(self):
 		# Test if logging is set up correctly
-		with self.assertLogs(app.logger, level='INFO') as log:
-			app.logger.info('Testing logging')
+		with self.assertLogs(self.logger, level='INFO') as log:
+			self.logger.info('Testing logging')
 			self.assertIn('INFO:src.app:Testing logging', log.output)
 
 

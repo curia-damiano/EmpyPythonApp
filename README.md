@@ -21,14 +21,17 @@ I have written the following post to show parts of this project:
   * Build TypeScript
   * Create the Python venv .venv
   * Activate the Python venv .venv
-  * Install Python dependencies
+  * Install Python dependencies for development
+  * Install Python dependencies for runtime
 
 
 ## Build & debug pipeline:
 
-* Install NPM dependencies (every time, because of changes in package.json)
+* Install NPM dependencies (every time, because of possible changes in package.json)
 * Build Typescript
-* Install Python dependencies (every time, because of changes in requirements.txt)
+* Install Python dependencies for development (every time, because of changes in requirements-dev.txt)
+* Install Python dependencies for runtime (every time, because of changes in requirements.txt)
+* Run Ruff
 * Run PyLint on 'src' folder
 * Run PyLint on 'tests' folder
 * Run Python Unit Tests
@@ -37,6 +40,12 @@ I have written the following post to show parts of this project:
 ## Supported IDEs:
 
 * Visual Studio Code
+
+
+## Ruff
+
+* Support from all IDEs
+* Support from command line "ruff check src tests"
 
 
 ## PyLint

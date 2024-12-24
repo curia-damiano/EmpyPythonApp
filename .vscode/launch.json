@@ -8,7 +8,7 @@
 			"name": "Python Debugger: Current File",
 			"type": "debugpy",
 			"request": "launch",
-			"preLaunchTask": "Run Python Unit Tests",
+			"preLaunchTask": "Prepare Debugging",
 			"program": "${workspaceFolder}/src/app.py",
 			"console": "integratedTerminal"
 		}
