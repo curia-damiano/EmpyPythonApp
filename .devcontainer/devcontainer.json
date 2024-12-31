@@ -1,0 +1,53 @@
+{
+	"name": "Flask TypeScript Dev Container",
+	"image": "mcr.microsoft.com/vscode/devcontainers/base:debian",
+	"features": {
+		// List of available features at https://containers.dev/features
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "22.12.0"
+		},
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.13.1"
+		}
+	},
+	"appPort": [5000],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"ms-azuretools.vscode-docker",
+				"ms-python.pylint",
+				"ms-python.python",
+				"ms-vscode.vscode-typescript",
+				"charliermarsh.ruff",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.linting.ruffEnabled": true,
+				"python.linting.ruffPath": "ruff",
+				"python.testing.nosetestsEnabled": false,
+				"python.testing.pytestEnabled": false,
+				"python.testing.unittestEnabled": true,
+				"python.testing.unittestArgs": [
+					"-v",
+					"-s",
+					"./tests",
+					"-p",
+					"test_*.py"
+				]
+			}
+		}
+	},
+	"containerEnv": {
+		"PYTHONPATH": "${containerWorkspaceFolder}/src"
+	},
+	"mounts": [
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly"
+	],
+	"postCreateCommand": "chmod +x ./.devcontainer/setup.sh && ./.devcontainer/setup.sh && chmod +x ./cleanall.sh"
+}

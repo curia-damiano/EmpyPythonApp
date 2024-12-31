@@ -1,0 +1,94 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Prepare Debugging",
+			"dependsOn": [
+				"Install NPM dependencies",
+				"Build TypeScript",
+				"Install Python dependencies for Development",
+				"Install Python dependencies for Runtime",
+				"Run Ruff",
+				"Run PyLint on 'src' folder",
+				"Run PyLint on 'tests' folder",
+				"Run Python Unit Tests"
+			],
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Install NPM dependencies",
+			"type": "shell",
+			"command": "npm install",
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Build TypeScript",
+			"type": "shell",
+			"command": "npm run build:debug",
+			"dependsOn": [
+				"Install NPM dependencies"
+			],
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Install Python dependencies for Development",
+			"type": "shell",
+			"command": "pip install -r requirements-dev.txt",
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Install Python dependencies for Runtime",
+			"type": "shell",
+			"command": "pip install -r requirements.txt",
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Run Ruff",
+			"type": "shell",
+			"command": "ruff check src tests",
+			"dependsOn": [
+				"Install Python dependencies for Development",
+				"Install Python dependencies for Runtime"
+			],
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Run PyLint on 'src' folder",
+			"type": "shell",
+			"command": "pylint src",
+			"dependsOn": [
+				"Install Python dependencies for Development",
+				"Install Python dependencies for Runtime"
+			],
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Run PyLint on 'tests' folder",
+			"type": "shell",
+			"command": "pylint tests",
+			"dependsOn": [
+				"Install Python dependencies for Development",
+				"Install Python dependencies for Runtime"
+			],
+			"group": "build",
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Run Python Unit Tests",
+			"type": "shell",
+			"command": "python -m unittest discover -s tests",
+			"dependsOn": [
+				"Install Python dependencies for Development",
+				"Install Python dependencies for Runtime"
+			],
+			"group": "test",
+			"problemMatcher": [ ]
+		}
+	]
+}
